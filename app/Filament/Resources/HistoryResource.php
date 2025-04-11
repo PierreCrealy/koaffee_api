@@ -30,9 +30,6 @@ class HistoryResource extends Resource
                 Tables\Columns\TextColumn::make('exchange_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('reclaimed_at')
-                    ->dateTime()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

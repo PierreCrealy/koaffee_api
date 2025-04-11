@@ -26,7 +26,7 @@ class HistoriesTable extends BaseWidget
                         'danger'  => fn ($state): bool => $state === ExchangeStatusEnum::Unclaimed,
                     ])
                     ->sortable(),
-                Tables\Columns\TextColumn::make('reclaimed_at')
+                Tables\Columns\TextColumn::make('created_at')
                     ->dateTime('d/m/Y H:i')
                     ->sortable(),
             ]);

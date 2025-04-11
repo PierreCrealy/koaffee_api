@@ -25,7 +25,7 @@ class ExchangesTable extends BaseWidget
                     })
                     ->badge()
                     ->color('success'),
-                Tables\Columns\TextColumn::make('initiated_at')
+                Tables\Columns\TextColumn::make('created_at')
                     ->label('Initié le')
                     ->dateTime('d/m/Y H:i')
                     ->sortable(),

@@ -30,9 +30,6 @@ class ExchangeResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('login')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('initiated_at')
-                    ->dateTime()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
