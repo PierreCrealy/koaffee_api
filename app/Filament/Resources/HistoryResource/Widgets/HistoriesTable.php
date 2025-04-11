@@ -15,7 +15,7 @@ class HistoriesTable extends BaseWidget
     {
         return $table
             ->query(
-                History::query()->orderBy('reclaimed_at')->limit(10)
+                History::query()->orderBy('created_at')->limit(5)
             )
             ->columns([
                 Tables\Columns\TextColumn::make('status')

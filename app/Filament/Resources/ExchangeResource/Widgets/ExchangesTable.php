@@ -15,7 +15,7 @@ class ExchangesTable extends BaseWidget
     {
         return $table
             ->query(
-                Exchange::query()
+                Exchange::query()->orderBy('created_at')->limit(5)
             )
             ->columns([
                 Tables\Columns\TextColumn::make('access')
