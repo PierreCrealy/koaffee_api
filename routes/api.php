@@ -21,6 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function(){
 
+    Route::post('login',[\App\Http\Controllers\AuthController::class,'login'])->name('login');
+    Route::post('register',[\App\Http\Controllers\AuthController::class,'register'])->name('register');
+
     Route::resource('exchange', \App\Http\Controllers\ExchangeController::class);
     Route::get('exchange/{id}/getHistories', [\App\Http\Controllers\ExchangeController::class, 'historiesByExchange']);
     Route::get('exchange/{access}/claim',  [\App\Http\Controllers\ExchangeController::class, 'claimExchange']);
