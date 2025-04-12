@@ -13,7 +13,10 @@ class HistoryController extends Controller
 {
     public function index()
     {
-        return History::all();
+        return response()
+            ->json([
+                'histories' => History::all()
+            ]);
     }
 
     public function store(Request $request)
@@ -28,7 +31,10 @@ class HistoryController extends Controller
                 ])
                 ->save();
 
-            return true;
+            return response()
+                ->json([
+                    'history' => $history
+                ]);
 
         }catch (\Exception $e){
             Log::error($e->getMessage());
@@ -39,16 +45,17 @@ class HistoryController extends Controller
 
     public function show(History $history)
     {
-        return $history->load('exchange');
-    }
-
-    public function update(Request $request, History $history)
-    {
-        //
+        return response()
+            ->json([
+                'history' => $history->load('exchange')
+            ]);
     }
 
     public function exchangeByHistory(int $historyId)
     {
-        return History::find($historyId)->exchange;
+        return response()
+            ->json([
+                'exchanges' => History::find($historyId)->exchange
+            ]);
     }
 }

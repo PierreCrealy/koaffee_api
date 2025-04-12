@@ -18,7 +18,10 @@ class ExchangeController extends Controller
 
     public function index()
     {
-        return Exchange::all();
+        return response()
+            ->json([
+                'exchanges' => Exchange::all()
+            ]);
     }
 
     public function store(Request $request)
@@ -34,7 +37,10 @@ class ExchangeController extends Controller
                 ])
                 ->save();
 
-            return true;
+            return response()
+                ->json([
+                    'exchange' => $exchange
+                ]);
 
         }catch (\Exception $e){
             Log::error($e->getMessage());
@@ -45,12 +51,18 @@ class ExchangeController extends Controller
 
     public function show(Exchange $exchange)
     {
-        return $exchange->load('histories');
+        return response()
+            ->json([
+                'exchange' => $exchange->load('histories')
+            ]);
     }
 
     public function historiesByExchange(int $exchangeId)
     {
-        return History::where('exchange_id', $exchangeId)->get();
+        return response()
+            ->json([
+                'histories' => History::where('exchange_id', $exchangeId)->get()
+            ]);
     }
 
 
@@ -71,7 +83,10 @@ class ExchangeController extends Controller
             // Get exchange already after his deletion
             $exchange->delete();
 
-            return $exchange;
+            return response()
+                ->json([
+                    'exchange' => $exchange
+                ]);
 
 
         }catch (\Exception $e)
