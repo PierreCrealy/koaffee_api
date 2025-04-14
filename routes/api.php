@@ -31,6 +31,12 @@ Route::prefix('v1')->group(function(){
     Route::resource('history', \App\Http\Controllers\HistoryController::class);
     Route::get('history/{id}/getExchange', [\App\Http\Controllers\HistoryController::class, 'exchangeByHistory']);
 
+    //
+
+    Route::resource('order', \App\Http\Controllers\OrderController::class);
+    Route::resource('product', \App\Http\Controllers\ProductController::class);
+
+
 });
 
 

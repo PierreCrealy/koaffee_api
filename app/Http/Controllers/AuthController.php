@@ -50,6 +50,8 @@ class AuthController extends BaseController
 
             $success['token'] =  $user->createToken('pass_api')->plainTextToken;
 
+            $user->setRememberToken($success['token']);
+
             return $this->sendResponse($success, 'User login successfully.');
         }
         else{
