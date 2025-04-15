@@ -24,4 +24,20 @@ class ProductController extends Controller
                 'product' => $product,
             ]);
     }
+
+    public function getGroupedByCategory()
+    {
+        return response()
+            ->json([
+                'products' => Product::all()->groupBy('category'),
+            ]);
+    }
+
+    public function getByCategory(string $category)
+    {
+        return response()
+            ->json([
+                'products' => Product::where('category', $category)->get(),
+            ]);
+    }
 }

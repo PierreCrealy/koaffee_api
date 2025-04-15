@@ -80,4 +80,21 @@ class OrderController extends Controller
     }
 
 
+    public function getGroupedByStatus()
+    {
+        return response()
+            ->json([
+                'orders' => Order::all()->groupBy('status'),
+            ]);
+    }
+
+    public function getByStatus(string $status)
+    {
+        return response()
+            ->json([
+                'orders' => Order::where('status', $status)->get(),
+            ]);
+    }
+
+
 }

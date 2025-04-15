@@ -16,8 +16,15 @@ class Order extends Model
         'total',
         'table',
         'fidelity_pts_earned',
+        'status',
 
         'user_id',
+    ];
+
+    public const STATUS = [
+        'COMPLETED',
+        'PROGRESS',
+        'CANCELLED',
     ];
 
 

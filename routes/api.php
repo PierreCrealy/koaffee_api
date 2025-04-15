@@ -25,17 +25,20 @@ Route::prefix('v1')->group(function(){
     Route::post('register',[\App\Http\Controllers\AuthController::class,'register'])->name('register');
 
     Route::resource('exchange', \App\Http\Controllers\ExchangeController::class);
-    Route::get('exchange/{id}/getHistories', [\App\Http\Controllers\ExchangeController::class, 'historiesByExchange']);
+    Route::get('exchange/{id}/get-histories', [\App\Http\Controllers\ExchangeController::class, 'historiesByExchange']);
     Route::get('exchange/{access}/claim',  [\App\Http\Controllers\ExchangeController::class, 'claimExchange']);
 
     Route::resource('history', \App\Http\Controllers\HistoryController::class);
-    Route::get('history/{id}/getExchange', [\App\Http\Controllers\HistoryController::class, 'exchangeByHistory']);
+    Route::get('history/{id}/get-exchange', [\App\Http\Controllers\HistoryController::class, 'exchangeByHistory']);
 
     //
-
+    Route::get('order/{status}/orders-status',  [\App\Http\Controllers\OrderController::class, 'getByStatus']);
+    Route::get('order/group-by-status',  [\App\Http\Controllers\OrderController::class, 'getGroupedByStatus']);
     Route::resource('order', \App\Http\Controllers\OrderController::class);
-    Route::resource('product', \App\Http\Controllers\ProductController::class);
 
+    Route::get('product/{category}/products-category',  [\App\Http\Controllers\ProductController::class, 'getByCategory']);
+    Route::get('product/group-by-category',  [\App\Http\Controllers\ProductController::class, 'getGroupedByCategory']);
+    Route::resource('product', \App\Http\Controllers\ProductController::class);
 
 });
 

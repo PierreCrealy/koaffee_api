@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('total');
             $table->string('table');
             $table->string('fidelity_pts_earned');
+            $table->string('status')->default(\App\Models\Order::STATUS[1]);
 
             $table->foreignId('user_id')->constrained()->references('id')->on('users');
 

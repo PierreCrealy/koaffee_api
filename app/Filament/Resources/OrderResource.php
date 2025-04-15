@@ -51,6 +51,14 @@ class OrderResource extends Resource
                     ->prefix('n°')
                     ->badge()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->colors([
+                        'success' => fn ($state): bool => $state == 'COMPLETED',
+                        'warning' => fn ($state): bool => $state == 'PROGRESS',
+                        'danger'  => fn ($state): bool => $state == 'CANCELLED',
+                    ])
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('fidelity_pts_earned')
                     ->suffix(' pts')
                     ->badge()
