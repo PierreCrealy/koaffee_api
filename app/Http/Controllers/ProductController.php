@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         return response()
             ->json([
-                'products' => Product::all()
+                'products' => Product::where('proposed', 1)->get()
             ]);
     }
 
@@ -29,7 +29,7 @@ class ProductController extends Controller
     {
         return response()
             ->json([
-                'products' => Product::all()->groupBy('category'),
+                'products' => Product::where('proposed', 1)->groupBy('category'),
             ]);
     }
 
@@ -37,7 +37,7 @@ class ProductController extends Controller
     {
         return response()
             ->json([
-                'products' => Product::where('category', $category)->get(),
+                'products' => Product::where(['category' => $category, 'proposed' => 1])->get(),
             ]);
     }
 }
