@@ -26,17 +26,37 @@ class Documentation extends Page
                     'required' => 'Aucun paramètre (Token) n\'est requis pour communiquer avec l\'API',
                 ],
                 'routes' => [
-                    'historique' =>
+//                    'historique' =>
+//                        [
+//                            'http://passapi.local/api/v1/history/',
+//                            'http://passapi.local/api/v1/history/{id}/getExchange'
+//                        ],
+//
+//                    'echange' =>
+//                        [
+//                            'http://passapi.local/api/v1/exchange/',
+//                            'http://passapi.local/api/v1/exchange/{id}/getHistories',
+//                            'http://passapi.local/api/v1/exchange/{access}/claim'
+//                        ],
+
+                    'order' =>
                         [
-                            'http://passapi.local/api/v1/history/',
-                            'http://passapi.local/api/v1/history/{id}/getExchange'
+                            'http://passapi.local/api/v1/order/',
+
+                            'http://passapi.local/api/v1/order/group-by-status',
+                            'http://passapi.local/api/v1/order/{userId}/group-by-status',
+
+                            'http://passapi.local/api/v1/order/{status}/orders-status',
+                            'http://passapi.local/api/v1/order/{userId}/{status}/latest',
+
                         ],
 
-                    'echange' =>
+                    'product' =>
                         [
-                            'http://passapi.local/api/v1/exchange/',
-                            'http://passapi.local/api/v1/exchange/{id}/getHistories',
-                            'http://passapi.local/api/v1/exchange/{access}/claim'
+                            'http://passapi.local/api/v1/product/',
+
+                            'http://passapi.local/api/v1/product/{category}/products-category',
+                            'http://passapi.local/api/v1/product/group-by-category'
                         ],
                 ],
             ])
@@ -60,14 +80,14 @@ class Documentation extends Page
                     ->aside()
                     ->icon('heroicon-m-question-mark-circle')
                     ->schema([
-                        TextEntry::make('routes.historique')
-                            ->label('Historique')
+                        TextEntry::make('routes.order')
+                            ->label('Commandes')
                             ->listWithLineBreaks()
                             ->badge()
                             ->color('warning'),
 
-                        TextEntry::make('routes.echange')
-                            ->label('Échange')
+                        TextEntry::make('routes.product')
+                            ->label('Produits')
                             ->listWithLineBreaks()
                             ->badge()
                             ->color('info'),

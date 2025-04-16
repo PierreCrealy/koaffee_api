@@ -21,6 +21,11 @@ class HistoryResource extends Resource
     protected static ?string $navigationLabel = 'Historique';
     protected static ?string $label = 'Historique';
 
+    public static function canAccess(): bool
+    {
+        return false;
+    }
+
     public static function table(Table $table): Table
     {
         return $table

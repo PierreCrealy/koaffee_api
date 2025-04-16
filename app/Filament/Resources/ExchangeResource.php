@@ -21,6 +21,11 @@ class ExchangeResource extends Resource
     protected static ?string $navigationLabel = 'Échanges';
     protected static ?string $label = 'Échanges';
 
+    public static function canAccess(): bool
+    {
+        return false;
+    }
+
 
     public static function table(Table $table): Table
     {

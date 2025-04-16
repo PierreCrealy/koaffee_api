@@ -88,11 +88,27 @@ class OrderController extends Controller
             ]);
     }
 
+    public function getUserOrdersGroupedByStatus(int $userId)
+    {
+        return response()
+            ->json([
+                'orders' => Order::where('user_id', $userId)->get()->groupBy('status'),
+            ]);
+    }
+
     public function getByStatus(string $status)
     {
         return response()
             ->json([
                 'orders' => Order::where('status', $status)->get(),
+            ]);
+    }
+
+    public function getUserOrderByStatus(int $userId, string $status)
+    {
+        return response()
+            ->json([
+                'orders' => Order::where(['status' => $status, 'user_id' => $userId])->latest()->first(),
             ]);
     }
 
