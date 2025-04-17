@@ -25,25 +25,28 @@ Route::prefix('v1')->group(function(){
     Route::post('login',[\App\Http\Controllers\AuthController::class,'login'])->name('login');
     Route::post('register',[\App\Http\Controllers\AuthController::class,'register'])->name('register');
 
-    // Order routes
-    Route::get('order/{status}/orders-status',  [\App\Http\Controllers\OrderController::class, 'getByStatus']);
-    Route::get('order/group-by-status',  [\App\Http\Controllers\OrderController::class, 'getGroupedByStatus']);
 
-    Route::get('order/{userId}/{status}/latest',  [\App\Http\Controllers\OrderController::class, 'getUserOrderByStatus']);
-    Route::get('order/{userId}/group-by-status',  [\App\Http\Controllers\OrderController::class, 'getUserOrdersGroupedByStatus']);
+    Route::middleware('auth:sanctum')->group(function(){
 
-    Route::resource('order', \App\Http\Controllers\OrderController::class);
+        // Order routes
+        Route::get('order/{status}/orders-status',  [\App\Http\Controllers\OrderController::class, 'getByStatus']);
+        Route::get('order/group-by-status',  [\App\Http\Controllers\OrderController::class, 'getGroupedByStatus']);
 
-    // Product routes
-    Route::get('product/{category}/products-category',  [\App\Http\Controllers\ProductController::class, 'getByCategory']);
-    Route::get('product/group-by-category',  [\App\Http\Controllers\ProductController::class, 'getGroupedByCategory']);
+        Route::get('order/{userId}/{status}/latest',  [\App\Http\Controllers\OrderController::class, 'getUserOrderByStatus']);
+        Route::get('order/{userId}/group-by-status',  [\App\Http\Controllers\OrderController::class, 'getUserOrdersGroupedByStatus']);
 
-    Route::resource('product', \App\Http\Controllers\ProductController::class);
+        Route::resource('order', \App\Http\Controllers\OrderController::class);
 
+        // Product routes
+        Route::get('product/{category}/products-category',  [\App\Http\Controllers\ProductController::class, 'getByCategory']);
+        Route::get('product/group-by-category',  [\App\Http\Controllers\ProductController::class, 'getGroupedByCategory']);
+
+        Route::resource('product', \App\Http\Controllers\ProductController::class);
+
+    });
 
 
     // ---
-
 
 
     Route::resource('exchange', \App\Http\Controllers\ExchangeController::class);
