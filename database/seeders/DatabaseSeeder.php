@@ -23,6 +23,13 @@ class DatabaseSeeder extends Seeder
              'password' => Hash::make('cda'),
          ]);
 
+        User::factory()->create([
+             'name' => 'guest_cda2',
+             'email' => 'guest2@cda.fr',
+             'password' => Hash::make('cda'),
+         ]);
+
+
         User::factory(15)->create();
 
         Product::factory(30)->create();
