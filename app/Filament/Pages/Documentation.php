@@ -23,7 +23,7 @@ class Documentation extends Page
             ->state([
                 'informations' => [
                     'route'    => 'http://passapi.local/api/v1/',
-                    'required' => 'Aucun paramètre (Token) n\'est requis pour communiquer avec l\'API',
+                    'required' => 'Un token est nécessaire pour communiquer avec  cette API',
                 ],
                 'routes' => [
 //                    'historique' =>
@@ -58,6 +58,18 @@ class Documentation extends Page
                             'http://passapi.local/api/v1/product/{category}/products-category',
                             'http://passapi.local/api/v1/product/group-by-category'
                         ],
+
+                    'service' =>
+                        [
+                            'http://passapi.local/api/v1/service/',
+                        ],
+
+                    'likedProduct' =>
+                        [
+                            'http://passapi.local/api/v1/liked-product',
+
+                            'http://passapi.local/api/v1/liked-product/{userId}/liked'
+                        ],
                 ],
             ])
 
@@ -91,6 +103,18 @@ class Documentation extends Page
                             ->listWithLineBreaks()
                             ->badge()
                             ->color('info'),
+
+                        TextEntry::make('routes.service')
+                            ->label('Services')
+                            ->listWithLineBreaks()
+                            ->badge()
+                            ->color('gray'),
+
+                        TextEntry::make('routes.likedProduct')
+                            ->label('Produits Favoris')
+                            ->listWithLineBreaks()
+                            ->badge()
+                            ->color('danger'),
                     ]),
 
 

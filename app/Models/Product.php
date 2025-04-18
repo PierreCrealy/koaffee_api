@@ -32,6 +32,8 @@ class Product extends Model
         'BOISSON FROIDE',
         'DESSERT',
         'PLAT',
+
+        'GOODIES',
     ];
 
     public function orders(): BelongsToMany

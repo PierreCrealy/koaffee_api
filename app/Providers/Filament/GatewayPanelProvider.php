@@ -47,8 +47,8 @@ class GatewayPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
                 StatsOverview::class,
-                ExchangesTable::class,
-                HistoriesTable::class,
+                // ExchangesTable::class,
+                // HistoriesTable::class,
 
             ])
             ->navigationItems([

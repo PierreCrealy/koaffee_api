@@ -43,6 +43,11 @@ Route::prefix('v1')->group(function(){
 
         Route::resource('product', \App\Http\Controllers\ProductController::class);
 
+        Route::resource('service', \App\Http\Controllers\ServiceController::class);
+
+        Route::get('liked-product/{userId}/liked',  [\App\Http\Controllers\LikedProductController::class, 'indexByUser']);
+        Route::resource('liked-product', \App\Http\Controllers\LikedProductController::class);
+
     });
 
 

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
-use App\Models\Product;
+use App\Filament\Resources\ServiceResource\Pages;
+use App\Filament\Resources\ServiceResource\RelationManagers;
+use App\Models\Service;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,13 +13,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ProductResource extends Resource
+class ServiceResource extends Resource
 {
-    protected static ?string $model = Product::class;
-    protected static ?string $navigationIcon = 'heroicon-o-beaker';
-    //protected static ?string $navigationGroup = 'Bar/Café';
-    protected static ?string $navigationLabel = 'Produits';
-    protected static ?string $label = 'Produits';
+    protected static ?string $model = Service::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-ticket';
 
     public static function form(Form $form): Form
     {
@@ -31,14 +29,6 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('description')
                     ->required()
                     ->maxLength(150),
-                Forms\Components\Select::make('category')
-                    ->options([
-                        'ACCOMPAGNEMENT' => 'ACCOMPAGNEMENT',
-                        'BOISSON CHAUDE' => 'BOISSON CHAUDE',
-                        'BOISSON FROIDE' => 'BOISSON FROIDE',
-                        'DESSERT'        => 'DESSERT',
-                        'PLAT'           => 'PLAT',
-                    ]),
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()
@@ -48,8 +38,6 @@ class ProductResource extends Resource
 
                         Forms\Components\Split::make([
                             Forms\Components\Toggle::make('highlight')
-                                ->required(),
-                            Forms\Components\Toggle::make('fidelity_program')
                                 ->required(),
                             Forms\Components\Toggle::make('proposed')
                                 ->required(),
@@ -68,17 +56,17 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('description')
                     ->limit(35)
                     ->searchable(),
-                Tables\Columns\TextColumn::make('category')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('price')
                     ->money('EUR')
                     ->sortable(),
                 Tables\Columns\IconColumn::make('highlight')
                     ->boolean(),
-                Tables\Columns\IconColumn::make('fidelity_program')
-                    ->boolean(),
                 Tables\Columns\IconColumn::make('proposed')
                     ->boolean(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
@@ -103,9 +91,9 @@ class ProductResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProducts::route('/'),
-            'create' => Pages\CreateProduct::route('/create'),
-            'edit' => Pages\EditProduct::route('/{record}/edit'),
+            'index' => Pages\ListServices::route('/'),
+            'create' => Pages\CreateService::route('/create'),
+            'edit' => Pages\EditService::route('/{record}/edit'),
         ];
     }
 }
