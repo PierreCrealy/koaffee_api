@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLikedProductRequest;
 use App\Http\Requests\UpdateLikedProductRequest;
 use App\Models\LikedProduct;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -15,7 +16,7 @@ class LikedProductController extends Controller
     {
         return response()
             ->json([
-                'likedProducts' => LikedProduct::where('user_id', $userId)->get()
+                'likedProducts' => Product::whereIn('id', LikedProduct::where('user_id', 1)->pluck('product_id') )->get()
             ]);
     }
 
