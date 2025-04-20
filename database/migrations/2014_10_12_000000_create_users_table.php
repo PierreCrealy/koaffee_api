@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('fidelity_pts');
+            $table->integer('fidelity_pts')->default(0);
 
             $table->rememberToken();
             $table->string('expo_token', 100)->nullable();

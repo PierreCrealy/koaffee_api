@@ -30,9 +30,11 @@ class AuthController extends BaseController
 
         $user = User::create($input);
 
-        $success['id']    = $user->id;
+        $success['id']    =  $user->id;
         $success['name']  =  $user->name;
         $success['email'] =  $user->email;
+        $success['fidelityPts'] = $user->fidelity_pts;
+
         $success['token'] =  $user->createToken('pass_api')->plainTextToken;
 
         return $this->sendResponse($success, 'User register successfully.');
@@ -47,6 +49,7 @@ class AuthController extends BaseController
             $success['id']    = $user->id;
             $success['name']  =  $user->name;
             $success['email'] =  $user->email;
+            $success['fidelityPts'] = $user->fidelity_pts;
 
             $success['token'] =  $user->createToken('pass_api')->plainTextToken;
 
