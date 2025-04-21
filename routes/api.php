@@ -46,6 +46,7 @@ Route::prefix('v1')->group(function(){
         Route::resource('service', \App\Http\Controllers\ServiceController::class);
 
         Route::get('liked-product/{userId}/liked',  [\App\Http\Controllers\LikedProductController::class, 'indexByUser']);
+        Route::delete('liked-product/{userId}/{productId}',  [\App\Http\Controllers\LikedProductController::class, 'destroyLiked']);
         Route::resource('liked-product', \App\Http\Controllers\LikedProductController::class);
 
     });

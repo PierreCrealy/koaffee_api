@@ -43,20 +43,12 @@ class LikedProductController extends Controller
         }
     }
 
-    public function show(LikedProduct $likedProduct)
+
+    public function destroyLiked(int $userId, int $productId)
     {
         return response()
             ->json([
-                'likedProduct' => $likedProduct
-            ]);
-    }
-
-
-    public function destroy(LikedProduct $likedProduct)
-    {
-        return response()
-            ->json([
-                'likedProductDelete' => (bool)$likedProduct->delete()
+                'likedProductDelete' => (bool)LikedProduct::where(['user_id' => $userId, 'product_id' => $productId])->delete()
             ]);
     }
 }
